@@ -15,6 +15,11 @@ import org.hibernate.annotations.Type;
 @Table(name="BOOK")
 public class Book implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7615624242713702030L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -27,11 +32,19 @@ public class Book implements Serializable {
 	
 	@Column
 	private String summary;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
+	private Author author;
 
 	@Column
 	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
 	private DateTime published;
 
+	public Book() {
+		
+	}
+	
 	public Book(String title) throws IllegalArgumentException {
 		if (title == null || title.isEmpty()) {
 			throw new IllegalArgumentException("Title must not be empty");
@@ -117,5 +130,14 @@ public class Book implements Serializable {
 	 */
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+
+	public Author getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Author author) {
+		this.author = author;
 	}
 }

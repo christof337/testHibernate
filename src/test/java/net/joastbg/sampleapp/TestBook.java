@@ -1,8 +1,10 @@
 package net.joastbg.sampleapp;
 
-import net.joastbg.sampleapp.entities.Book;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import junit.framework.Assert;
+import net.joastbg.sampleapp.entities.Author;
+import net.joastbg.sampleapp.entities.Book;
 
 /**
  *
@@ -12,7 +14,7 @@ public class TestBook {
 
 	@Test
 	public void testCreateNewBookWithTitle() {
-		Book book = new Book("My Book");
+		new Book("My Book");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -23,5 +25,13 @@ public class TestBook {
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewBookWithNullTitle() {
 		new Book(null);
+	}
+	
+	@Test
+	public void testSetAuthorToBook() {
+		Book book = new Book("Les Robots");
+		Author author = new Author("Asimov", "Isaac");
+		book.setAuthor(author);
+		Assert.assertEquals(author, book.getAuthor());
 	}
 }

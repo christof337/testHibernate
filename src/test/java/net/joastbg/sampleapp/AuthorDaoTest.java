@@ -31,4 +31,10 @@ public class AuthorDaoTest {
 		Assert.assertEquals("Nazareth", author.getLastName());
 		Assert.assertEquals("Jesus", author.getFirstName());
 	}
+	
+	@Test
+	public void testBooks() {
+		Author author = authorDao.find(1L);
+		Assert.assertNotNull(author.getBooks());
+	}
 }

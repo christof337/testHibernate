@@ -1,12 +1,19 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +39,17 @@ public class Author implements Serializable, Comparable<Author> {
 	
 	@Column
 	private String firstName;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "BOOK", joinColumns = { 
+			@JoinColumn(name = "author_id", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "id", 
+					nullable = false, updatable = false) })
+	private List<Book> books;
+
+	public Author() {
+		
+	}
 
 	public Author(String lastName, String firstName) throws IllegalArgumentException {
 		if (lastName == null || lastName.isEmpty() || firstName == null || firstName.isEmpty()) {
@@ -65,8 +83,17 @@ public class Author implements Serializable, Comparable<Author> {
 		this.firstName = firstName;
 	}
 
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
 	@Override
 	public int compareTo(Author o) {
 		return o.getFirstName().compareTo(this.getFirstName()) + o.getLastName().compareTo(this.getLastName());
 	}
+	
 }
