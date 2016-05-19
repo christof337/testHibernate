@@ -31,4 +31,10 @@ public class BookDaoTest {
 		Assert.assertEquals("test", book.getTitle());
 	}
 	
+	@Test
+	public void testRecupAuthor() {
+		Book book = bookDao.find(30L);
+		Assert.assertEquals("Rowling", book.getAuthor().getLastName());
+	}
+	
 }
