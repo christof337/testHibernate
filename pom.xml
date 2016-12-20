@@ -1,14 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.joastbg.sampleapp</groupId>
+
+
+	<parent>
+		<groupId>com.ccavalier.submodule</groupId>
+		<artifactId>submodules</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../parent-submodule</relativePath>
+	</parent>
+
+
 	<artifactId>sampleapp</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Sample App Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>4.3.2.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -28,11 +37,7 @@
 		</dependency>
 
 		<!-- Spring 3 dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -56,19 +61,19 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>${spring.version}</version>
+		
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>${spring.version}</version>
+		
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>${spring.version}</version>
+			
 		</dependency>
 
 		<dependency>
