@@ -29,9 +29,7 @@ public class Book implements Serializable {
 	
 	@Column
 	private String ISBN;
-	
-	@Column
-	private String summary;
+
 	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")
@@ -100,21 +98,6 @@ public class Book implements Serializable {
 		this.published = published;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public String getSummary() {
-		return summary;
-	}
-
-	/**
-	 * 
-	 * @param summary
-	 */
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
 
 	/**
 	 * 
