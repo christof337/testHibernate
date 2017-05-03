@@ -11,8 +11,8 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import junit.framework.Assert;
+import net.joastbg.sampleapp.dao.PersonDao;
 import net.joastbg.sampleapp.entities.Person;
-import net.joastbg.sampleapp.entities.PersonDao;
 import net.joastbg.sampleapp.entities.TypePerson;
 import net.joastbg.sampleapp.exceptions.DaoException;
 

@@ -1,47 +1,52 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-
 /**
- * Describes a Book
+ * Describes a Dvd
  * 
- * @author Johan Astborg <joastbg@gmail.com>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
+@SequenceGenerator(name="SEQ_ARTICLE",sequenceName="SEQ_DB_NAME")
 @Table(name="DVD")
-public class Dvd implements Serializable {
+public class Dvd extends Article implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -9185080208096257030L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="article_seq_gen")
-	@SequenceGenerator(name="article_seq_gen", sequenceName="ARTICLE_SEQ")
-	private Long idArticle;
-
 	@Column
 	@Enumerated(EnumType.ORDINAL)
 	private DvdCategory category;
+	
+	@ManyToOne(optional=false) 
+    @JoinColumn(name="idRealisateur", nullable=false, updatable=false)
+	private Person realisateur;
 		
-	@Column
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-	private DateTime published;
-
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "PLAYED_IN_DVD_PERSON", joinColumns = {
+			@JoinColumn(name = "idDvd", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "idVedette",
+					nullable = false, updatable = false) })
+	private Set<Person> vedettes;
+	
+	
 	public Dvd() {
 		
 	}
@@ -52,22 +57,6 @@ public class Dvd implements Serializable {
 //		}
 //		setTitle(title);
 //	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public Long getIdArticle() {
-		return idArticle;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setIdArticle(Long id) {
-		this.idArticle = id;
-	}
 
 	/**
 	 * @return the category
@@ -84,19 +73,30 @@ public class Dvd implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the realisateur
 	 */
-	public DateTime getPublished() {
-		return published;
+	public Person getRealisateur() {
+		return realisateur;
 	}
 
 	/**
-	 * 
-	 * @param published
+	 * @param realisateur the realisateur to set
 	 */
-	public void setPublished(DateTime published) {
-		this.published = published;
+	public void setRealisateur(Person realisateur) {
+		this.realisateur = realisateur;
 	}
 
+	/**
+	 * @return the vedettes
+	 */
+	public Set<Person> getVedettes() {
+		return vedettes;
+	}
+
+	/**
+	 * @param vedettes the vedettes to set
+	 */
+	public void setVedettes(Set<Person> vedettes) {
+		this.vedettes = vedettes;
+	}
 }

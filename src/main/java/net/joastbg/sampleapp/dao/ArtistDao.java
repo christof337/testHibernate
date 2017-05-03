@@ -1,4 +1,4 @@
-package net.joastbg.sampleapp.entities;
+package net.joastbg.sampleapp.dao;
 
 import java.util.List;
 
@@ -9,35 +9,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.joastbg.sampleapp.entities.Artist;
 import net.joastbg.sampleapp.exceptions.DaoException;
 
 @Service
 @Transactional
-public class PersonDao {
+public class ArtistDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public Long persist(Person person){
+	public Long persist(Artist Artist){
 		Session session = sessionFactory.getCurrentSession();
-		Long returnID = (Long) session.save(person);
+		Long returnID = (Long) session.save(Artist);
 		return returnID;
 	}
 	
-	public Person find(Long id){
+	public Artist find(Long id){
 		Session session = sessionFactory.getCurrentSession();
-		return (Person) session.load(Person.class, id);
+		return (Artist) session.load(Artist.class, id);
 	}	
 	
-	public Person findByName(String lastName) throws DaoException {
+	public Artist findByName(String name) throws DaoException {
 		Session session = sessionFactory.getCurrentSession();
-		Query q = session.createQuery("FROM Person WHERE lastName = :lastName");
-		q.setString("lastName", lastName);
+		Query q = session.createQuery("FROM Artist WHERE name = :name");
+		q.setString("name", name);
 		List l = q.list();
 		if ( l.size() > 1 ) {
 			throw new DaoException("Multiple results");
 		} else {
-			return (Person) l.get(0);
+			return (Artist) l.get(0);
 		}
 	}	
 }

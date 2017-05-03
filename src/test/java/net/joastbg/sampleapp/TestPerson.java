@@ -7,54 +7,55 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 import net.joastbg.sampleapp.entities.Person;
+import net.joastbg.sampleapp.entities.TypePerson;
 import net.joastbg.sampleapp.entities.Book;
 
 /**
  *
- * @author Johan Astborg <joastbg@gmail.com>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 
 public class TestPerson {
 
 	@Test
 	public void testCreateNewAuthorWithName() {
-		Person person = new Person("Asimov","Isaac");
+		Person person = new Person("Asimov","Isaac",TypePerson.AUTHOR);
 //		Assert.assertNotNull("Id auteur null",author.getId());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyLastName() {
-		new Person("","JRR");
+		new Person("","JRR",TypePerson.AUTHOR);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyFirstName() {
-		new Person("Tolkien","");
+		new Person("Tolkien","",TypePerson.AUTHOR);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyFirstNameAndLastName() {
-		new Person("","");
+		new Person("","",TypePerson.VEDETTE);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithNullLastName() {
-		new Person(null,"George RR");
+		new Person(null,"George RR",TypePerson.AUTHOR);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithNullFirstName() {
-		new Person("Martin",null);
+		new Person("Martin",null,TypePerson.AUTHOR);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewBookWithNullFirstNameAndLastName() {
-		new Person(null, null);
+		new Person(null, null, null);
 	}
 	
 	@Test 
 	public void testAddBooksToAuthorMesCouilles() {
-		Person person = new Person("Tolkien", "JRR");
+		Person person = new Person("Tolkien", "JRR",TypePerson.AUTHOR);
 		Set<Book> books = new HashSet<Book>();
 		
 		books.add(new Book("La communauté de l'anneau"));

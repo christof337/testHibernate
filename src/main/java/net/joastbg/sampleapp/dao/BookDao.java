@@ -1,4 +1,4 @@
-package net.joastbg.sampleapp.entities;
+package net.joastbg.sampleapp.dao;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.joastbg.sampleapp.entities.Book;
 import net.joastbg.sampleapp.exceptions.DaoException;
 
 @Service
@@ -35,7 +36,23 @@ public class BookDao {
 		Query q = session.createQuery("FROM Book WHERE title = :title");
 		q.setString("title", title);
 		List l = q.list();
-		if ( l.size() > 1 ) {
+		if ( l.isEmpty() ) {
+			throw new DaoException("No result");
+		} else if ( l.size() > 1 ) {
+			throw new DaoException("Multiple results");
+		} else {
+			return (Book) l.get(0);
+		}
+	}	
+	
+	public Book findByIsbn(String isbn) throws DaoException {
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("FROM Book WHERE isbn = :isbn");
+		q.setString("isbn", isbn);
+		List l = q.list();
+		if ( l.isEmpty() ) {
+			throw new DaoException("No result");
+		} else if ( l.size() > 1 ) {
 			throw new DaoException("Multiple results");
 		} else {
 			return (Book) l.get(0);

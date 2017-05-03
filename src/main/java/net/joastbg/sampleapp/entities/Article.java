@@ -15,7 +15,7 @@ import javax.persistence.Table;
 /**
  * Describes an Article
  * 
- * @Article Christophe Pont <christof337@hotmail.fr>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)

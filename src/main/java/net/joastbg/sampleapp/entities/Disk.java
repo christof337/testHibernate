@@ -9,11 +9,12 @@ import org.hibernate.annotations.Type;
 /**
  * Describes a Disk
  * 
- * @author Johan Astborg <joastbg@gmail.com>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
+@SequenceGenerator(name="SEQ_ARTICLE",sequenceName="SEQ_DB_NAME")
 @Table(name="DISK")
-public class Disk implements Serializable {
+public class Disk extends Article implements Serializable {
 
 	/**
 	 * 
@@ -23,13 +24,9 @@ public class Disk implements Serializable {
 	@Column
 	private Long idArtist;
 	
-	@Column 
+	@Column(name = "style")
 	@Enumerated(EnumType.ORDINAL)
 	private MusicStyle musicStyle;
-
-	@Column
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-	private DateTime published;
 
 	public Disk() {
 		
@@ -57,18 +54,16 @@ public class Disk implements Serializable {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the musicStyle
 	 */
-	public DateTime getPublished() {
-		return published;
+	public MusicStyle getMusicStyle() {
+		return musicStyle;
 	}
 
 	/**
-	 * 
-	 * @param published
+	 * @param musicStyle the musicStyle to set
 	 */
-	public void setPublished(DateTime published) {
-		this.published = published;
+	public void setMusicStyle(MusicStyle musicStyle) {
+		this.musicStyle = musicStyle;
 	}
 }

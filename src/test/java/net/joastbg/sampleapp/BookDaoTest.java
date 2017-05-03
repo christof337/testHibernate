@@ -14,8 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import junit.framework.Assert;
 import net.joastbg.sampleapp.entities.Person;
+import net.joastbg.sampleapp.dao.BookDao;
 import net.joastbg.sampleapp.entities.Book;
-import net.joastbg.sampleapp.entities.BookDao;
 import net.joastbg.sampleapp.exceptions.DaoException;
 
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback=false)

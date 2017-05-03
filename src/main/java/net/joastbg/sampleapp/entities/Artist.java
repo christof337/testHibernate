@@ -12,7 +12,7 @@ import javax.persistence.Table;
 /**
  * Describes an Artist
  * 
- * @Artist Christophe Pont <christof337@hotmail.fr>
+ * @Artist Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
 @Table(name="ARTIST")

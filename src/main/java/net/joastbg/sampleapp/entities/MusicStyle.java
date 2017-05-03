@@ -4,5 +4,6 @@ public enum MusicStyle {
 	ROCK, 
 	RAP, 
 	JAZZ, 
-	CLASSIQUE;
+	CLASSIQUE,
+	NODATA;
 }

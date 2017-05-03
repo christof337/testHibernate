@@ -20,12 +20,7 @@
             </props>
         </property>
 								
-        <property name="annotatedClasses">
-            <list>
-                <value>net.joastbg.sampleapp.entities.Book</value>
-				<value>net.joastbg.sampleapp.entities.Person</value>
-            </list>
-        </property>
+        <property name="packagesToScan" value = "net.joastbg.sampleapp.entities"/>
     </bean>
     
     <bean id="transactionManager" name="transactionManager" 

@@ -19,7 +19,7 @@ import org.joda.time.DateTime;
 /**
  * Describes a Book
  * 
- * @author Johan Astborg <joastbg@gmail.com>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
 @SequenceGenerator(name="SEQ_ARTICLE",sequenceName="SEQ_DB_NAME")
@@ -43,10 +43,6 @@ public class Book extends Article implements Serializable {
 			inverseJoinColumns = { @JoinColumn(name = "idAuthor",
 					nullable = false, updatable = false) })
 	private Set<Person> authors;
-
-	@Column
-	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
-	private DateTime published;
 
 	public Book() {
 		super();
@@ -76,38 +72,6 @@ public class Book extends Article implements Serializable {
 		this.ISBN = ISBN;
 	}
 
-//	/**
-//	 * 
-//	 * @return
-//	 */
-//	public Long getIdBook() {
-//		return this.idBook;
-//	}
-//
-//	/**
-//	 * 
-//	 * @param id
-//	 */
-//	public void setIdBook(Long id) {
-//		this.idBook = id;
-//	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public DateTime getPublished() {
-		return published;
-	}
-
-	/**
-	 * 
-	 * @param published
-	 */
-	public void setPublished(DateTime published) {
-		this.published = published;
-	}
-
 
 	/**
 	 * 
@@ -125,22 +89,6 @@ public class Book extends Article implements Serializable {
 		this.title = title;
 	}
 	
-
-    
-
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name = "WROTE_BY_AUTHOR_BOOK", joinColumns = {
-//			@JoinColumn(name = "idBook", nullable = false, updatable = false) },
-//			inverseJoinColumns = { @JoinColumn(name = "idAuthor",
-//					nullable = false, updatable = false) })
-	
-//    @ManyToMany
-//    @JoinTable(name="WROTE_BY_AUTHOR_BOOK",
-//        joinColumns=
-//            @JoinColumn(name="idBook", referencedColumnName="idArticle"),
-//        inverseJoinColumns=
-//            @JoinColumn(name="idAuthor", referencedColumnName="id")
-//        )
 	public Set<Person> getAuthors() {
 		return authors;
 	}

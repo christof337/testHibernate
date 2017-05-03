@@ -20,7 +20,7 @@ import javax.persistence.Table;
 /**
  * Describes an Person
  * 
- * @author Christophe Pont <christof337@hotmail.fr>
+ * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
 @Table(name="PEROSN")
@@ -53,6 +53,12 @@ public class Person implements Serializable, Comparable<Person> {
 					nullable = false, updatable = false) })
 	private Set<Book> books;
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "PLAYED_IN_DVD_PERSON", joinColumns = {
+			@JoinColumn(name = "idVedette", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "idDvd",
+					nullable = false, updatable = false) })
+	private Set<Dvd> films;
 	
 	// -------------------- 
 	// CONSTRUCTORS
@@ -118,6 +124,20 @@ public class Person implements Serializable, Comparable<Person> {
 	 */
 	public void setPersonType(TypePerson personType) {
 		this.personType = personType;
+	}
+
+	/**
+	 * @return the films
+	 */
+	public Set<Dvd> getFilms() {
+		return films;
+	}
+
+	/**
+	 * @param films the films to set
+	 */
+	public void setFilms(Set<Dvd> films) {
+		this.films = films;
 	}
 
 	@Override
