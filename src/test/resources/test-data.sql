@@ -46,17 +46,17 @@ insert into ARTICLE(price, description) values(3.00, 'Incontournable');
 insert into BOOK(idArticle, title, ISBN) 
 	values(
 		(SELECT idArticle FROM ARTICLE WHERE price = 3.00 AND description = 'Incontournable'),
-		'Le livre de l''été', 
+		'Le livre de l''Ã©tÃ©',
 		'00448U500');
 		
 insert into WROTE_BY_AUTHOR_BOOK(idBook, idAuthor) 
 	values (
-		(SELECT idArticle FROM BOOK WHERE title = 'Le livre de l''été' AND ISBN='00448U500'), 
+		(SELECT idArticle FROM BOOK WHERE title = 'Le livre de l''Ã©tÃ©' AND ISBN='00448U500'),
 		(SELECT id FROM PERSON WHERE lastName = 'Levy' AND firstName = 'Marc' AND personType = 'AUTHOR'));
 		
 insert into WROTE_BY_AUTHOR_BOOK(idBook, idAuthor) 
 	values (
-		(SELECT idArticle FROM BOOK WHERE title = 'Le livre de l''été' AND ISBN='00448U500'), 
+		(SELECT idArticle FROM BOOK WHERE title = 'Le livre de l''Ã©tÃ©' AND ISBN='00448U500'),
 		(SELECT id FROM PERSON WHERE lastName = 'Rowling' AND firstName = 'JK' AND personType = 'AUTHOR'));
 
 -- Artists
@@ -72,32 +72,32 @@ insert into DISK(idArticle, idArtist, style)
 		(select id FROM ARTIST WHERE name = 'Muse'), 
 		'Rock');
 
-insert into ARTICLE(price, description) values(58.00, 'L''intégrale du groupe culte');
+insert into ARTICLE(price, description) values(58.00, 'L''intï¿½grale du groupe culte');
 insert into DISK(idArticle, idArtist, style) 
 	values (
-		(SELECT idArticle FROM ARTICLE WHERE price = 58.00 AND description = 'L''intégrale du groupe culte'),
+		(SELECT idArticle FROM ARTICLE WHERE price = 58.00 AND description = 'L''intï¿½grale du groupe culte'),
 		(select id FROM ARTIST WHERE name = 'Queen'), 
-		'Rock');		
+		'ROCK');
 
 insert into ARTICLE(price, description) values(8.00, 'Son plus beau morceau');
 insert into DISK(idArticle, idArtist, style) 
 	values (
 		(SELECT idArticle FROM ARTICLE WHERE price = 8.00 AND description = 'Son plus beau morceau'),
 		(select id FROM ARTIST WHERE name = 'Chopin'), 
-		'Classique');
+		'CLASSIQUE');
 
 insert into ARTICLE(price, description) values(31.11, 'Encore un album...');
 insert into DISK(idArticle, idArtist, style)
 	values (
 		(SELECT idArticle FROM ARTICLE WHERE price = 31.11 AND description = 'Encore un album...'),
 		(select id FROM ARTIST WHERE name = 'Dr Grims'), 
-		'Nodata');
+		'NODATA');
 
 insert into ARTICLE(price, description) values(35.00, 'Sorti en 1977');
 insert into DVD(idArticle, category, idRealisateur) 
 	values (
 		(SELECT idArticle FROM ARTICLE WHERE price = 35.00 AND description = 'Sorti en 1977'),
-		'Fantastique',
+		'FANTASTIQUE',
 		(SELECT id FROM PERSON WHERE lastName = 'Lucas' AND firstName = 'Georges')
 	);
 	
@@ -105,7 +105,7 @@ insert into ARTICLE(price, description) values(23.00, 'Un chef d''oeuvre');
 insert into DVD(idArticle, category, idRealisateur) 
 	values (
 		(SELECT idArticle FROM ARTICLE WHERE price = 23.00 AND description = 'Un chef d''oeuvre'),
-		'Thriller',
+		'THRILLER',
 		(SELECT id FROM PERSON WHERE lastName = 'Nolan' AND firstName = 'Christopher')
 	);
 	
@@ -113,12 +113,12 @@ insert into ARTICLE(price, description) values(29.00, 'Du lourd visuellement');
 insert into DVD(idArticle, category, idRealisateur) 
 	values (
 		(SELECT idArticle FROM ARTICLE WHERE price = 29.00 AND description = 'Du lourd visuellement'),
-		'Action',
+		'ACTION',
 		(SELECT id FROM PERSON WHERE lastName = 'Bay' AND firstName = 'Michael')
 	);
 	
 insert into PLAYED_IN_DVD_PERSON(idDvd, idVedette) 
 	values (
-		(select idArticle FROM dvd where category = 'Action'),
+		(select idArticle FROM dvd where category = 'ACTION'),
 		(SELECT id FROM PERSON WHERE lastName = 'Cruise' AND firstName = 'Tom')
 	);

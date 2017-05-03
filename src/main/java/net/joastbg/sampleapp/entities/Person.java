@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author Charlotte Cavalier <charlotte.cavalier@gmail.com>
  */
 @Entity
-@Table(name="PEROSN")
+@Table(name="PERSON")
 public class Person implements Serializable, Comparable<Person> {
 
 	/**
@@ -43,7 +43,7 @@ public class Person implements Serializable, Comparable<Person> {
 	private String firstName;
 	
 	@Column
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private TypePerson personType;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

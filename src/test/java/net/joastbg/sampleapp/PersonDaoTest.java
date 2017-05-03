@@ -1,5 +1,6 @@
 package net.joastbg.sampleapp;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -33,18 +34,23 @@ public class PersonDaoTest {
 		
 		Assert.assertNotNull("Auteur null",person);
 		Assert.assertEquals("Nom de famille incorrect","Nazareth", person.getLastName());
-		Assert.assertEquals("Prénom incorrect","Jesus", person.getFirstName());
+		Assert.assertEquals("PrÃ©nom incorrect","Jesus", person.getFirstName());
 	}
-	
+
 	@Test
-	public void testBooks() {
-		Optional<Person> person = Optional.empty();
-		try {
-			person = Optional.ofNullable(personDao.findByName("Tolkien"));
-		} catch (DaoException e) {
-			Assert.fail("Echec de récupération de l'auteur : " + e.getMessage());
+	public void testSelectAll(){
+		List<Person> persons =personDao.findAll();
+		Assert.assertNotNull(persons);
+		for(Person person: persons){
+			System.out.println(personDao);
 		}
-		Assert.assertTrue(person.isPresent());
-		Assert.assertNotNull(person.get().getBooks());
+	}
+
+	@Test
+	public void testBooks() throws DaoException {
+
+		Person author = personDao.findByName("Tolkien");
+		Assert.assertNotNull(author);
+		Assert.assertEquals("Tolkien", author.getLastName());
 	}
 }

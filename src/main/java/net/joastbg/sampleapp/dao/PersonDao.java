@@ -34,11 +34,13 @@ public class PersonDao {
 		Session session = sessionFactory.getCurrentSession();
 		Query q = session.createQuery("FROM Person WHERE lastName = :lastName");
 		q.setString("lastName", lastName);
-		List l = q.list();
-		if ( l.size() > 1 ) {
-			throw new DaoException("Multiple results");
-		} else {
-			return (Person) l.get(0);
-		}
-	}	
+		return (Person)q.uniqueResult();
+
+	}
+
+	public List<Person> findAll(){
+		Session session = sessionFactory.getCurrentSession();
+		Query q = session.createQuery("FROM Person");
+		return q.list();
+	}
 }

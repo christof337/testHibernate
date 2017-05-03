@@ -32,7 +32,7 @@ public class Dvd extends Article implements Serializable {
 	private static final long serialVersionUID = -9185080208096257030L;
 
 	@Column
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private DvdCategory category;
 	
 	@ManyToOne(optional=false) 

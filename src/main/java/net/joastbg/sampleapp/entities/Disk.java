@@ -25,7 +25,7 @@ public class Disk extends Article implements Serializable {
 	private Long idArtist;
 	
 	@Column(name = "style")
-	@Enumerated(EnumType.ORDINAL)
+	@Enumerated(EnumType.STRING)
 	private MusicStyle musicStyle;
 
 	public Disk() {
