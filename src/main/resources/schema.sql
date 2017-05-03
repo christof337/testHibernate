@@ -4,7 +4,7 @@ insert into AUTHOR values(100, 'Rowling', 'JK')
 
 CREATE TABLE BOOK (id INTEGER, title varchar(50), ISBN varchar(30), author_id INTEGER)
 
-insert into BOOK values(10, 'Harry Potter et la coupe de feu', '00448U573', null, 1)
+insert into BOOK values(10, 'Harry Potter et la coupe de feu', '00448U573', 1)
 
 CREATE table ARTICLE(id INTEGER, price INTEGER, description varchar(20))
 
