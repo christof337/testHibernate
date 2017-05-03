@@ -1,10 +1,19 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import org.joda.time.DateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
 
 /**
  * Describes a Book
@@ -26,7 +35,8 @@ public class Dvd implements Serializable {
 	private Long idArticle;
 
 	@Column
-	private Long categorie;
+	@Enumerated(EnumType.ORDINAL)
+	private DvdCategory category;
 		
 	@Column
 	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
@@ -60,17 +70,17 @@ public class Dvd implements Serializable {
 	}
 
 	/**
-	 * @return the categorie
+	 * @return the category
 	 */
-	public Long getCategorie() {
-		return categorie;
+	public DvdCategory getCategory() {
+		return category;
 	}
 
 	/**
-	 * @param categorie the categorie to set
+	 * @param category the category to set
 	 */
-	public void setCategorie(Long categorie) {
-		this.categorie = categorie;
+	public void setCategory(DvdCategory category) {
+		this.category = category;
 	}
 
 	/**

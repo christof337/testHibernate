@@ -1,12 +1,13 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * Describes an Author
+ * Describes an Person
  * 
  * @author Christophe Pont <christof337@hotmail.fr>
  */
 @Entity
-@Table(name="AUTHOR")
-public class Author implements Serializable, Comparable<Author> {
+@Table(name="PEROSN")
+public class Person implements Serializable, Comparable<Person> {
 
 	/**
 	 * 
@@ -41,13 +42,10 @@ public class Author implements Serializable, Comparable<Author> {
 	@Column
 	private String firstName;
 	
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name = "BOOK", joinColumns = { 
-//			@JoinColumn(name = "author_id", nullable = false, updatable = false) }, 
-//			inverseJoinColumns = { @JoinColumn(name = "idArticle", 
-//					nullable = false, updatable = false) })
-//	private List<Book> books;
-
+	@Column
+	@Enumerated(EnumType.ORDINAL)
+	private TypePerson personType;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "WROTE_BY_AUTHOR_BOOK", joinColumns = {
 			@JoinColumn(name = "idAuthor", nullable = false, updatable = false) },
@@ -55,18 +53,27 @@ public class Author implements Serializable, Comparable<Author> {
 					nullable = false, updatable = false) })
 	private Set<Book> books;
 	
-	public Author() {
+	
+	// -------------------- 
+	// CONSTRUCTORS
+	// --------------------
+	public Person() {
 		
 	}
 
-	public Author(String lastName, String firstName) throws IllegalArgumentException {
-		if (lastName == null || lastName.isEmpty() || firstName == null || firstName.isEmpty()) {
-			throw new IllegalArgumentException("Title must not be empty");
+	public Person(String lastName, String firstName, TypePerson personType) throws IllegalArgumentException {
+		if (lastName == null || lastName.isEmpty() || firstName == null || firstName.isEmpty() || personType == null) {
+			throw new IllegalArgumentException("Last name nor first name nor person type must not be empty");
 		}
 		setLastName(lastName);
 		setFirstName(firstName);
+		setPersonType(personType);
 	}
 
+
+	// -------------------- 
+	// GETTERS AND SETTERS
+	// --------------------
 	public Long getId() {
 		return id;
 	}
@@ -99,9 +106,23 @@ public class Author implements Serializable, Comparable<Author> {
 		this.books = books;
 	}
 
+	/**
+	 * @return the personType
+	 */
+	public TypePerson getPersonType() {
+		return personType;
+	}
+
+	/**
+	 * @param personType the personType to set
+	 */
+	public void setPersonType(TypePerson personType) {
+		this.personType = personType;
+	}
+
 	@Override
-	public int compareTo(Author o) {
-		return o.getFirstName().compareTo(this.getFirstName()) + o.getLastName().compareTo(this.getLastName());
+	public int compareTo(Person o) {
+		return o.getFirstName().compareTo(this.getFirstName()) + o.getLastName().compareTo(this.getLastName()) + o.getPersonType().compareTo(this.getPersonType());
 	}
 	
 }

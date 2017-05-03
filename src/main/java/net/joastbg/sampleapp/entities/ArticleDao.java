@@ -8,20 +8,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class AuthorDao {
-	
+public class ArticleDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public Long persist(Author author){
+	public Long persist(Article article){
 		Session session = sessionFactory.getCurrentSession();
-		Long returnID = (Long) session.save(author);
+		Long returnID = (Long) session.save(article);
 		return returnID;
 	}
 	
-	public Author find(Long id){
+	public Article find(Long id){
 		Session session = sessionFactory.getCurrentSession();
-		return (Author) session.load(Author.class, id);
-	}	
+		return (Article) session.load(Article.class, id);
+	}
 }

@@ -13,32 +13,31 @@ import net.joastbg.sampleapp.exceptions.DaoException;
 
 @Service
 @Transactional
-public class BookDao {
-	
+public class PersonDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public Long persist(Book book){
+	public Long persist(Person person){
 		Session session = sessionFactory.getCurrentSession();
-		Long returnID = (Long) session.save(book);
+		Long returnID = (Long) session.save(person);
 		return returnID;
 	}
 	
-	public Book find(Long id){
+	public Person find(Long id){
 		Session session = sessionFactory.getCurrentSession();
-		return (Book) session.load(Book.class, id);
-	}
-
-	public Book findByTitle(String title) throws DaoException {
+		return (Person) session.load(Person.class, id);
+	}	
+	
+	public Person findByName(String lastName) throws DaoException {
 		Session session = sessionFactory.getCurrentSession();
-		Query q = session.createQuery("FROM Book WHERE title = :title");
-		q.setString("title", title);
+		Query q = session.createQuery("FROM Person WHERE lastName = :lastName");
+		q.setString("lastName", lastName);
 		List l = q.list();
 		if ( l.size() > 1 ) {
 			throw new DaoException("Multiple results");
 		} else {
-			return (Book) l.get(0);
+			return (Person) l.get(0);
 		}
 	}	
 }

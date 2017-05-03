@@ -6,7 +6,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import net.joastbg.sampleapp.entities.Author;
+import net.joastbg.sampleapp.entities.Person;
 import net.joastbg.sampleapp.entities.Book;
 
 /**
@@ -34,9 +34,9 @@ public class TestBook {
 	@Test
 	public void testSetAuthorToBook() {
 		Book book = new Book("Les Robots");
-		Author author = new Author("Asimov", "Isaac");
-		Set<Author> authorsSet = new HashSet<Author>();
-		authorsSet.add(author);
+		Person person = new Person("Asimov", "Isaac");
+		Set<Person> authorsSet = new HashSet<Person>();
+		authorsSet.add(person);
 		book.setAuthors(authorsSet);
 		Assert.assertEquals(authorsSet, book.getAuthors());
 	}

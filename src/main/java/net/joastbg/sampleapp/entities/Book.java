@@ -31,25 +31,18 @@ public class Book extends Article implements Serializable {
 	 */
 	private static final long serialVersionUID = -7615624242713702030L;
 
-//	@Id
-//	@GeneratedValue(strategy=GenerationType.AUTO, generator="article_seq_gen")
-//	@SequenceGenerator(name="article_seq_gen", sequenceName="idArticle")
-//	@Column
-//	private Long idArticle;
-
 	@Column
 	private String title;
 	
 	@Column
 	private String ISBN;
 
-	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "WROTE_BY_AUTHOR_BOOK", joinColumns = {
 			@JoinColumn(name = "idBook", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "idAuthor",
 					nullable = false, updatable = false) })
-	private Set<Author> authors;
+	private Set<Person> authors;
 
 	@Column
 	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
@@ -87,16 +80,16 @@ public class Book extends Article implements Serializable {
 //	 * 
 //	 * @return
 //	 */
-//	public Long getIdArticle() {
-//		return this.idArticle;
+//	public Long getIdBook() {
+//		return this.idBook;
 //	}
 //
 //	/**
 //	 * 
 //	 * @param id
 //	 */
-//	public void setIdArticle(Long id) {
-//		this.idArticle = id;
+//	public void setIdBook(Long id) {
+//		this.idBook = id;
 //	}
 
 	/**
@@ -133,11 +126,26 @@ public class Book extends Article implements Serializable {
 	}
 	
 
-	public Set<Author> getAuthors() {
+    
+
+//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinTable(name = "WROTE_BY_AUTHOR_BOOK", joinColumns = {
+//			@JoinColumn(name = "idBook", nullable = false, updatable = false) },
+//			inverseJoinColumns = { @JoinColumn(name = "idAuthor",
+//					nullable = false, updatable = false) })
+	
+//    @ManyToMany
+//    @JoinTable(name="WROTE_BY_AUTHOR_BOOK",
+//        joinColumns=
+//            @JoinColumn(name="idBook", referencedColumnName="idArticle"),
+//        inverseJoinColumns=
+//            @JoinColumn(name="idAuthor", referencedColumnName="id")
+//        )
+	public Set<Person> getAuthors() {
 		return authors;
 	}
 
-	public void setAuthors(Set<Author> authors) {
-		this.authors = authors;
+	public void setAuthors(Set<Person> persons) {
+		this.authors = persons;
 	}
 }

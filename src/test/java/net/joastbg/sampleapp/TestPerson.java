@@ -6,7 +6,7 @@ import java.util.Set;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import net.joastbg.sampleapp.entities.Author;
+import net.joastbg.sampleapp.entities.Person;
 import net.joastbg.sampleapp.entities.Book;
 
 /**
@@ -14,55 +14,55 @@ import net.joastbg.sampleapp.entities.Book;
  * @author Johan Astborg <joastbg@gmail.com>
  */
 
-public class TestAuthor {
+public class TestPerson {
 
 	@Test
 	public void testCreateNewAuthorWithName() {
-		Author author = new Author("Asimov","Isaac");
+		Person person = new Person("Asimov","Isaac");
 //		Assert.assertNotNull("Id auteur null",author.getId());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyLastName() {
-		new Author("","JRR");
+		new Person("","JRR");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyFirstName() {
-		new Author("Tolkien","");
+		new Person("Tolkien","");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithEmptyFirstNameAndLastName() {
-		new Author("","");
+		new Person("","");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithNullLastName() {
-		new Author(null,"George RR");
+		new Person(null,"George RR");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewAuthorWithNullFirstName() {
-		new Author("Martin",null);
+		new Person("Martin",null);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateNewBookWithNullFirstNameAndLastName() {
-		new Author(null, null);
+		new Person(null, null);
 	}
 	
 	@Test 
 	public void testAddBooksToAuthorMesCouilles() {
-		Author author = new Author("Tolkien", "JRR");
+		Person person = new Person("Tolkien", "JRR");
 		Set<Book> books = new HashSet<Book>();
 		
 		books.add(new Book("La communauté de l'anneau"));
 		books.add(new Book("Les deux tours"));
 		books.add(new Book("Le retour du roi"));
 		
-		author.setBooks(books);
+		person.setBooks(books);
 		
-		Assert.assertEquals(books, author.getBooks());
+		Assert.assertEquals(books, person.getBooks());
 	}
 }

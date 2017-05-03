@@ -20,13 +20,12 @@ public class Disk implements Serializable {
 	 */
 	private static final long serialVersionUID = 1635687572249825983L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="article_seq_gen")
-	@SequenceGenerator(name="article_seq_gen", sequenceName="ARTICLE_SEQ")
-	private Long idArticle;
-
 	@Column
-	private Long idMusicien;
+	private Long idArtist;
+	
+	@Column 
+	@Enumerated(EnumType.ORDINAL)
+	private MusicStyle musicStyle;
 
 	@Column
 	@Type(type = "org.joda.time.contrib.hibernate.PersistentDateTime")
@@ -44,33 +43,17 @@ public class Disk implements Serializable {
 //	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the idArtist
 	 */
-	public Long getIdArticle() {
-		return idArticle;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setIdArticle(Long id) {
-		this.idArticle = id;
-	}
-
-	/**
-	 * @return the idMusicien
-	 */
-	public Long getIdMusicien() {
-		return idMusicien;
+	public Long getIdArtist() {
+		return idArtist;
 	}
 
 	/**
 	 * @param idMusicien the idMusicien to set
 	 */
-	public void setIdMusicien(Long idMusicien) {
-		this.idMusicien = idMusicien;
+	public void setIdArtist(Long idArtist) {
+		this.idArtist = idArtist;
 	}
 
 	/**
