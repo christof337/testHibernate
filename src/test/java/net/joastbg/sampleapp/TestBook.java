@@ -1,5 +1,8 @@
 package net.joastbg.sampleapp;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -14,7 +17,8 @@ public class TestBook {
 
 	@Test
 	public void testCreateNewBookWithTitle() {
-		new Book("My Book");
+		Book book = new Book("My Book");
+//		Assert.assertNotNull("Id livre null",book.getIdArticle());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -31,7 +35,9 @@ public class TestBook {
 	public void testSetAuthorToBook() {
 		Book book = new Book("Les Robots");
 		Author author = new Author("Asimov", "Isaac");
-		book.setAuthor(author);
-		Assert.assertEquals(author, book.getAuthor());
+		Set<Author> authorsSet = new HashSet<Author>();
+		authorsSet.add(author);
+		book.setAuthors(authorsSet);
+		Assert.assertEquals(authorsSet, book.getAuthors());
 	}
 }

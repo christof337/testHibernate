@@ -1,5 +1,7 @@
 package net.joastbg.sampleapp;
 
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import junit.framework.Assert;
+import net.joastbg.sampleapp.entities.Author;
 import net.joastbg.sampleapp.entities.Book;
 import net.joastbg.sampleapp.entities.BookDao;
 
@@ -24,17 +27,21 @@ public class BookDaoTest {
 	@Test
 	public void testSave(){
 		Long id = bookDao.persist(new Book("test"));
-		Assert.assertNotNull(id);
+		Assert.assertNotNull("Id livre null",id);
+		
 		Book book = bookDao.find(id);
 		
-		Assert.assertNotNull(book);
-		Assert.assertEquals("test", book.getTitle());
+		Assert.assertNotNull("Livre null", book);
+		Assert.assertEquals("Intitule livre incorrect","test", book.getTitle());
 	}
 	
 	@Test
 	public void testRecupAuthor() {
 		Book book = bookDao.find(30L);
-		Assert.assertEquals("Rowling", book.getAuthor().getLastName());
+		Set<Author> authors = book.getAuthors();
+		Assert.assertFalse("Set d'auteurs vide", authors.isEmpty());
+		Author author = authors.iterator().next();
+		Assert.assertEquals("Noms de famille différents", "Rowling", author.getLastName());
 	}
 	
 }

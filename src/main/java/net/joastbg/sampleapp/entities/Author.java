@@ -2,6 +2,7 @@ package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,6 +32,7 @@ public class Author implements Serializable, Comparable<Author> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column
 	private Long id;
 
 	@Column
@@ -40,13 +41,20 @@ public class Author implements Serializable, Comparable<Author> {
 	@Column
 	private String firstName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "BOOK", joinColumns = { 
-			@JoinColumn(name = "author_id", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "id", 
-					nullable = false, updatable = false) })
-	private List<Book> books;
+//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinTable(name = "BOOK", joinColumns = { 
+//			@JoinColumn(name = "author_id", nullable = false, updatable = false) }, 
+//			inverseJoinColumns = { @JoinColumn(name = "idArticle", 
+//					nullable = false, updatable = false) })
+//	private List<Book> books;
 
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "WROTE_BY_AUTHOR_BOOK", joinColumns = {
+			@JoinColumn(name = "idAuthor", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "idBook",
+					nullable = false, updatable = false) })
+	private Set<Book> books;
+	
 	public Author() {
 		
 	}
@@ -83,11 +91,11 @@ public class Author implements Serializable, Comparable<Author> {
 		this.firstName = firstName;
 	}
 
-	public List<Book> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(Set<Book> books) {
 		this.books = books;
 	}
 

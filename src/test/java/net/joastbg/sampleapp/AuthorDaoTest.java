@@ -24,12 +24,12 @@ public class AuthorDaoTest {
 	@Test
 	public void testSave(){
 		Long id = authorDao.persist(new Author("Nazareth","Jesus"));
-		Assert.assertNotNull(id);
+		Assert.assertNotNull("Id auteur null",id);
 		Author author = authorDao.find(id);
 		
-		Assert.assertNotNull(author);
-		Assert.assertEquals("Nazareth", author.getLastName());
-		Assert.assertEquals("Jesus", author.getFirstName());
+		Assert.assertNotNull("Auteur null",author);
+		Assert.assertEquals("Nom de famille incorrect","Nazareth", author.getLastName());
+		Assert.assertEquals("Prénom incorrect","Jesus", author.getFirstName());
 	}
 	
 	@Test

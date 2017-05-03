@@ -1,7 +1,7 @@
 package net.joastbg.sampleapp;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -17,8 +17,9 @@ import net.joastbg.sampleapp.entities.Book;
 public class TestAuthor {
 
 	@Test
-	public void testCreateNewBookWithTitle() {
+	public void testCreateNewAuthorWithName() {
 		Author author = new Author("Asimov","Isaac");
+//		Assert.assertNotNull("Id auteur null",author.getId());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -54,7 +55,7 @@ public class TestAuthor {
 	@Test 
 	public void testAddBooksToAuthorMesCouilles() {
 		Author author = new Author("Tolkien", "JRR");
-		List<Book> books = new ArrayList<Book>();
+		Set<Book> books = new HashSet<Book>();
 		
 		books.add(new Book("La communauté de l'anneau"));
 		books.add(new Book("Les deux tours"));
