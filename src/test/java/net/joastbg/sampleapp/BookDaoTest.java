@@ -1,8 +1,6 @@
 package net.joastbg.sampleapp;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +12,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import junit.framework.Assert;
-import net.joastbg.sampleapp.entities.Person;
 import net.joastbg.sampleapp.dao.BookDao;
 import net.joastbg.sampleapp.entities.Book;
 import net.joastbg.sampleapp.exceptions.DaoException;

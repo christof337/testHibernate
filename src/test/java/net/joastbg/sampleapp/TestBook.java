@@ -18,8 +18,7 @@ public class TestBook {
 
 	@Test
 	public void testCreateNewBookWithTitle() {
-		Book book = new Book("My Book");
-//		Assert.assertNotNull("Id livre null",book.getIdArticle());
+		new Book("My Book");
 	}
 
 	@Test(expected = IllegalArgumentException.class)

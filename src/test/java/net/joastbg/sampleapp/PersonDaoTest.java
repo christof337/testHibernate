@@ -1,7 +1,6 @@
 package net.joastbg.sampleapp;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,9 +40,7 @@ public class PersonDaoTest {
 	public void testSelectAll(){
 		List<Person> persons =personDao.findAll();
 		Assert.assertNotNull(persons);
-		for(Person person: persons){
-			System.out.println(personDao);
-		}
+		Assert.assertFalse(persons.isEmpty());
 	}
 
 	@Test

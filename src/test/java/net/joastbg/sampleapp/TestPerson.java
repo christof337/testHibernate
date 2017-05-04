@@ -19,8 +19,7 @@ public class TestPerson {
 
 	@Test
 	public void testCreateNewAuthorWithName() {
-		Person person = new Person("Asimov","Isaac",TypePerson.AUTHOR);
-//		Assert.assertNotNull("Id auteur null",author.getId());
+		new Person("Asimov","Isaac",TypePerson.AUTHOR);
 	}
 
 	@Test(expected = IllegalArgumentException.class)

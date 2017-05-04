@@ -1,10 +1,13 @@
 package net.joastbg.sampleapp.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import org.joda.time.DateTime;
 
-import org.hibernate.annotations.Type;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Describes a Disk
