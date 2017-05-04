@@ -11,7 +11,6 @@ import net.joastbg.sampleapp.entities.Dvd;
 @Service
 @Transactional
 public class DvdDao {
-	
 
 	@Autowired
 	SessionFactory sessionFactory;

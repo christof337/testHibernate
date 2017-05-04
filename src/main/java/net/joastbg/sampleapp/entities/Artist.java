@@ -31,13 +31,6 @@ public class Artist implements Serializable, Comparable<Artist> {
 	@Column
 	private String name;
 	
-//	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinTable(name = "WROTE_BY_Artist_BOOK", joinColumns = {
-//			@JoinColumn(name = "idArtist", nullable = false, updatable = false) },
-//			inverseJoinColumns = { @JoinColumn(name = "idBook",
-//					nullable = false, updatable = false) })
-//	private Set<Book> books;
-	
 	public Artist() {
 		
 	}
